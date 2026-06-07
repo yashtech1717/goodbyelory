@@ -1,0 +1,823 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Sai ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+--bg:#05010d;
+--card:rgba(255,255,255,.06);
+--border:rgba(255,255,255,.08);
+--purple:#8e44ff;
+--purple2:#c76dff;
+--text:#ffffff;
+--muted:#d7d7d7;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:var(--bg);
+color:white;
+overflow-x:hidden;
+position:relative;
+}
+
+/* Aurora Background */
+
+body::before{
+content:'';
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at 20% 20%,rgba(142,68,255,.20),transparent 35%),
+radial-gradient(circle at 80% 30%,rgba(199,109,255,.18),transparent 35%),
+radial-gradient(circle at 50% 80%,rgba(120,80,255,.15),transparent 40%);
+filter:blur(40px);
+animation:aurora 15s ease-in-out infinite alternate;
+pointer-events:none;
+z-index:-3;
+}
+
+@keyframes aurora{
+
+0%{
+transform:scale(1);
+}
+
+100%{
+transform:scale(1.2);
+}
+
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-2;
+}
+
+/* Hero */
+
+.hero{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
+position:relative;
+}
+
+.hero::after{
+content:'';
+position:absolute;
+width:600px;
+height:600px;
+background:radial-gradient(circle,#8e44ff33,transparent 70%);
+filter:blur(100px);
+z-index:-1;
+}
+
+.hero h1{
+
+font-size:clamp(4rem,10vw,8rem);
+font-weight:800;
+
+background:
+linear-gradient(
+90deg,
+#ffffff,
+#dcb7ff,
+#8e44ff
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+text-shadow:
+0 0 40px rgba(178,108,255,.4);
+
+}
+
+.hero p{
+
+margin-top:20px;
+max-width:800px;
+
+font-size:1.3rem;
+line-height:2;
+color:var(--muted);
+
+}
+
+/* Sections */
+
+.section{
+padding:120px 8%;
+position:relative;
+}
+
+.title{
+
+font-size:clamp(2.5rem,5vw,4.5rem);
+text-align:center;
+margin-bottom:60px;
+font-weight:800;
+
+background:
+linear-gradient(
+90deg,
+#ffffff,
+#dcb7ff,
+#8e44ff
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+}
+
+/* Glass */
+
+.glass{
+
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,.08),
+rgba(255,255,255,.02)
+);
+
+border:1px solid var(--border);
+
+backdrop-filter:blur(30px);
+
+box-shadow:
+0 10px 40px rgba(0,0,0,.3),
+0 0 30px rgba(178,108,255,.08);
+
+border-radius:30px;
+
+padding:30px;
+
+transition:.5s;
+
+}
+
+.glass:hover{
+
+transform:
+translateY(-10px)
+scale(1.01);
+
+box-shadow:
+0 20px 60px rgba(178,108,255,.25);
+
+}
+
+/* Memory Buttons */
+
+.memory-btn{
+
+width:100%;
+padding:20px;
+
+border:none;
+cursor:pointer;
+
+border-radius:20px;
+
+font-size:18px;
+font-weight:700;
+color:white;
+
+background:
+linear-gradient(
+135deg,
+#8e44ff,
+#c76dff
+);
+
+position:relative;
+overflow:hidden;
+
+}
+
+.memory-btn::before{
+
+content:'';
+
+position:absolute;
+top:0;
+left:-100%;
+
+width:100%;
+height:100%;
+
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.3),
+transparent
+);
+
+transition:.8s;
+
+}
+
+.memory-btn:hover::before{
+left:100%;
+}
+
+.hidden-video{
+display:none;
+margin-top:25px;
+animation:fade .8s ease;
+}
+
+.hidden-video video{
+width:100%;
+border-radius:25px;
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* Audio */
+
+.audio-box audio{
+width:100%;
+}
+
+/* Memory Book */
+
+.photo-grid{
+
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(280px,1fr));
+
+gap:35px;
+
+}
+
+.photo-card{
+
+height:340px;
+
+background:white;
+
+padding:12px;
+
+border-radius:12px;
+
+transform:rotate(calc(var(--r) * 1deg));
+
+overflow:hidden;
+
+box-shadow:
+0 20px 50px rgba(0,0,0,.4);
+
+transition:1s;
+
+}
+
+.photo-card:hover{
+
+transform:
+rotate(0deg)
+scale(1.08);
+
+z-index:10;
+
+}
+
+.photo-card img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+
+}
+
+/* Questions */
+
+.question-card{
+
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,.08),
+rgba(255,255,255,.03)
+);
+
+padding:25px;
+
+border-radius:25px;
+
+margin-bottom:25px;
+
+}
+
+.question{
+
+font-size:1.25rem;
+font-weight:700;
+
+margin-bottom:20px;
+
+}
+
+.option{
+
+padding:14px;
+
+border-radius:15px;
+
+background:
+rgba(255,255,255,.05);
+
+margin-bottom:10px;
+
+}
+
+/* Letter */
+
+.letter{
+
+max-width:1000px;
+
+margin:auto;
+
+padding:60px;
+
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,.08),
+rgba(255,255,255,.02)
+);
+
+border-radius:40px;
+
+font-size:1.2rem;
+
+line-height:2.4;
+
+color:#e4e4e4;
+
+text-align:center;
+
+box-shadow:
+0 20px 60px rgba(0,0,0,.3);
+
+}
+
+/* Goodbye */
+
+.goodbye{
+
+height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+
+text-align:center;
+
+padding:20px;
+
+}
+
+.goodbye h2{
+
+font-size:clamp(4rem,10vw,8rem);
+
+background:
+linear-gradient(
+90deg,
+#ffffff,
+#b26cff
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+}
+
+.goodbye p{
+
+max-width:900px;
+
+font-size:1.3rem;
+line-height:2;
+
+color:#ddd;
+
+}
+
+.final{
+
+margin-top:30px;
+
+font-size:2rem;
+font-weight:700;
+
+color:#c76dff;
+
+animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+50%{
+transform:scale(1.08);
+}
+
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar{
+width:10px;
+}
+
+::-webkit-scrollbar-track{
+background:#080312;
+}
+
+::-webkit-scrollbar-thumb{
+background:#8e44ff;
+border-radius:20px;
+}
+
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<section class="hero">
+
+<h1>For Glory</h1>
+
+<p>
+Some people enter our lives and become memories we never want to lose.
+Some conversations become stories.
+Some stories become forever.
+</p>
+
+</section>
+
+<section class="section">
+
+<h2 class="title">
+Special Memories
+</h2>
+
+{% for video in videos %}
+
+<div class="glass">
+
+<button
+class="memory-btn"
+onclick="toggleVideo('video{{video.id}}')">
+
+{{ video.button_name }}
+
+</button>
+
+<div
+id="video{{video.id}}"
+class="hidden-video">
+
+<video controls>
+<source
+src="{{ url_for('static', filename='uploads/videos/' + video.filename) }}">
+</video>
+
+</div>
+
+</div>
+
+<br>
+
+{% endfor %}
+
+</section>
+
+<section class="section">
+
+<h2 class="title">
+Voice Memories
+</h2>
+
+{% for audio in audios %}
+
+<div class="glass audio-box">
+
+<h3 style="margin-bottom:15px;">
+🎧 Voice Memory
+</h3>
+
+<audio controls>
+<source
+src="{{ url_for('static', filename='uploads/audio/' + audio.filename) }}">
+</audio>
+
+</div>
+
+<br>
+
+{% endfor %}
+
+</section>
+
+<section class="section">
+
+<h2 class="title">
+Memory Wall
+</h2>
+
+<div class="photo-grid">
+
+{% for photo in photos %}
+<div class="photo-card" style="--r:0">
+    <img src="{{ url_for('static', filename='uploads/photos/' + photo.filename) }}">
+</div>
+
+{% endfor %}
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="title">
+Questions
+</h2>
+
+{% for q in questions %}
+
+<div class="question-card">
+
+<div class="question">
+
+{{ q.question }}
+
+</div>
+
+<div class="option">
+{{ q.option1 }}
+</div>
+
+<div class="option">
+{{ q.option2 }}
+</div>
+
+<div class="option">
+{{ q.option3 }}
+</div>
+
+<div class="option">
+{{ q.option4 }}
+</div>
+
+</div>
+
+{% endfor %}
+
+</section>
+
+<section class="section">
+
+<h2 class="title">
+One Last Letter
+</h2>
+
+<div class="letter">
+
+{{ letter.content }}
+
+</div>
+
+</section>
+
+<section class="goodbye">
+
+<h2>
+Goodbye Glory
+</h2>
+
+<p>
+
+No matter how far life takes us,
+the memories we created together
+will always remain.
+
+</p>
+
+<div class="final">
+
+❤️ Friendship Never Dies ❤️
+
+</div>
+
+</section>
+```html id="r6xkpi"
+<script>
+
+/* Video Toggle */
+
+function toggleVideo(id){
+
+const box = document.getElementById(id);
+
+if(box.style.display === "block"){
+
+box.style.display = "none";
+
+}else{
+
+box.style.display = "block";
+
+}
+
+}
+
+/* Stars Background */
+
+const canvas =
+document.getElementById("stars");
+
+const ctx =
+canvas.getContext("2d");
+
+canvas.width =
+window.innerWidth;
+
+canvas.height =
+window.innerHeight;
+
+let stars = [];
+
+for(let i=0;i<350;i++){
+
+stars.push({
+
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+
+r:Math.random()*2,
+
+speed:
+Math.random()*1.5+0.2
+
+});
+
+}
+
+function animateStars(){
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+ctx.fillStyle="white";
+
+stars.forEach(star=>{
+
+ctx.beginPath();
+
+ctx.arc(
+star.x,
+star.y,
+star.r,
+0,
+Math.PI*2
+);
+
+ctx.fill();
+
+star.y += star.speed;
+
+if(star.y > canvas.height){
+
+star.y = 0;
+
+star.x =
+Math.random()*canvas.width;
+
+}
+
+});
+
+requestAnimationFrame(
+animateStars
+);
+
+}
+
+animateStars();
+
+/* Resize */
+
+window.addEventListener(
+"resize",
+()=>{
+
+canvas.width =
+window.innerWidth;
+
+canvas.height =
+window.innerHeight;
+
+}
+);
+
+/* Scroll Reveal */
+
+const observer =
+new IntersectionObserver(
+
+(entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+
+entry.target.style.transform=
+"translateY(0px)";
+
+}
+
+});
+
+},
+
+{
+threshold:0.15
+}
+
+);
+
+document
+.querySelectorAll(
+'.glass,.photo-card,.question-card,.letter'
+)
+.forEach(el=>{
+
+el.style.opacity="0";
+
+el.style.transform=
+"translateY(50px)";
+
+el.style.transition=
+"1s ease";
+
+observer.observe(el);
+
+});
+
+</script>
+
+</body>
+</html>
+```

@@ -1,0 +1,353 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yash Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#05010d;
+color:white;
+padding:40px;
+overflow-x:hidden;
+}
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:40px;
+}
+
+.title{
+font-size:3rem;
+font-weight:700;
+background:linear-gradient(90deg,#fff,#b26cff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.logout{
+padding:12px 25px;
+text-decoration:none;
+border-radius:15px;
+background:linear-gradient(90deg,#8e44ff,#c76dff);
+color:white;
+font-weight:600;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(450px,1fr));
+gap:25px;
+}
+
+.card{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(20px);
+padding:25px;
+border-radius:25px;
+}
+
+.card h2{
+margin-bottom:20px;
+color:#d7b4ff;
+}
+
+input[type=text],
+textarea{
+width:100%;
+padding:15px;
+margin-bottom:15px;
+border:none;
+outline:none;
+border-radius:15px;
+background:rgba(255,255,255,.08);
+color:white;
+}
+
+input[type=file]{
+width:100%;
+margin-bottom:15px;
+}
+
+textarea{
+height:250px;
+resize:none;
+}
+
+button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:15px;
+cursor:pointer;
+font-size:16px;
+font-weight:600;
+background:linear-gradient(90deg,#8e44ff,#c76dff);
+color:white;
+}
+
+.section-title{
+margin-top:40px;
+margin-bottom:20px;
+font-size:2rem;
+color:#d7b4ff;
+}
+
+.item{
+padding:15px;
+border-radius:15px;
+background:rgba(255,255,255,.05);
+margin-bottom:10px;
+word-break:break-word;
+}
+
+.option{
+margin-top:8px;
+padding:10px;
+border-radius:10px;
+background:rgba(255,255,255,.04);
+}
+
+</style>
+</head>
+<body>
+
+<div class="header">
+
+<div class="title">
+Yash Dashboard
+</div>
+
+<a href="/logout" class="logout">
+Logout
+</a>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+
+<h2>Upload Video</h2>
+
+<form
+action="/upload_video"
+method="POST"
+enctype="multipart/form-data">
+
+<input
+type="file"
+name="video"
+required>
+
+<input
+type="text"
+name="button_name"
+placeholder="Button Name Example: Open When You Miss Me ❤️"
+required>
+
+<button type="submit">
+Upload Video
+</button>
+
+</form>
+
+</div>
+
+<div class="card">
+
+<h2>Upload Audio</h2>
+
+<form
+action="/upload_audio"
+method="POST"
+enctype="multipart/form-data">
+
+<input
+type="file"
+name="audio"
+required>
+
+<button type="submit">
+Upload Audio
+</button>
+
+</form>
+
+</div>
+
+<div class="card">
+
+<h2>Upload Photo</h2>
+
+<form
+action="/upload_photo"
+method="POST"
+enctype="multipart/form-data">
+
+<input
+type="file"
+name="photo"
+required>
+
+<button type="submit">
+Upload Photo
+</button>
+
+</form>
+
+</div>
+
+<div class="card">
+
+<h2>Add Question</h2>
+
+<form action="/add_question" method="POST">
+
+<input
+type="text"
+name="question"
+placeholder="Question"
+required>
+
+<input
+type="text"
+name="option1"
+placeholder="Option 1"
+required>
+
+<input
+type="text"
+name="option2"
+placeholder="Option 2"
+required>
+
+<input
+type="text"
+name="option3"
+placeholder="Option 3"
+required>
+
+<input
+type="text"
+name="option4"
+placeholder="Option 4"
+required>
+
+<button type="submit">
+Save Question
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+<div class="section-title">
+Edit Goodbye Letter
+</div>
+
+<div class="card">
+
+<form action="/save_letter" method="POST">
+
+<textarea name="content">{{ letter.content }}</textarea>
+
+<button type="submit">
+Save Letter
+</button>
+
+</form>
+
+</div>
+
+<div class="section-title">
+Uploaded Videos
+</div>
+
+<div class="card">
+
+{% for video in videos %}
+
+<div class="item">
+🎥 {{ video.button_name }}<br>
+{{ video.filename }}
+</div>
+
+{% endfor %}
+
+</div>
+
+<div class="section-title">
+Uploaded Audio
+</div>
+
+<div class="card">
+
+{% for audio in audios %}
+
+<div class="item">
+🎵 {{ audio.filename }}
+</div>
+
+{% endfor %}
+
+</div>
+
+<div class="section-title">
+Uploaded Photos
+</div>
+
+<div class="card">
+
+{% for photo in photos %}
+
+<div class="item">
+🖼️ {{ photo.filename }}
+</div>
+
+{% endfor %}
+
+</div>
+
+<div class="section-title">
+Questions
+</div>
+
+<div class="card">
+
+{% for q in questions %}
+
+<div class="item">
+
+<strong>{{ q.question }}</strong>
+
+<div class="option">{{ q.option1 }}</div>
+<div class="option">{{ q.option2 }}</div>
+<div class="option">{{ q.option3 }}</div>
+<div class="option">{{ q.option4 }}</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</body>
+</html>
